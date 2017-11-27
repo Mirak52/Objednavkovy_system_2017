@@ -10,25 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Objednavkovy_system.pages;
 
-namespace Objednavkovy_system
+namespace Objednavkovy_system.pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Registration.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Registration : Window
     {
-        public MainWindow()
+        public Registration()
         {
             InitializeComponent();
         }
 
-        private void Registration_Click(object sender, RoutedEventArgs e)
+        private void Return_Click(object sender, RoutedEventArgs e)
         {
-            Registration page = new Registration();
+            MainWindow page = new MainWindow();
             page.Show();
             this.Close();
         }
