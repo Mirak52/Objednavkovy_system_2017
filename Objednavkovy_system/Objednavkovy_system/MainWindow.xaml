@@ -25,12 +25,13 @@
             <StackPanel.Background>
                 <SolidColorBrush Color="PapayaWhip" Opacity="0.15"/>
             </StackPanel.Background>
-            <Label Content="Login" FontSize="30"></Label>
-            <TextBox x:Name="Login" Height="30"></TextBox>
+            <Label x:Name="Error" Height="80" FontSize="25" Foreground="#DDFF0000"/>
+            <Label Content="Email" FontSize="30"></Label>
+            <TextBox x:Name="Email" Height="30"></TextBox>
             <Label Content="Password" FontSize="30"></Label>
             <PasswordBox x:Name="Password" Height="30"></PasswordBox>
             <TextBlock/>
-            <Button x:Name="SignIn" Content="Odeslat"/>
+            <Button x:Name="SignIn" Background="Green" Content="Odeslat" Click="SignIn_Click"/>
             <TextBlock/>
             <Button x:Name="Registration" Content="Registration" Click="Registration_Click"/>
         </StackPanel>
