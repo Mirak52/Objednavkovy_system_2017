@@ -85,5 +85,13 @@ namespace Objednavkovy_system
             }
             
         }
+
+        private void goShop_Click(object sender, RoutedEventArgs e)
+        {
+            ShopMain page = new ShopMain();
+            page.Show();
+            this.Close();
+        }
+
     }
 }

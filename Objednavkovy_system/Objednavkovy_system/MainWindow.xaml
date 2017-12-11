@@ -34,6 +34,7 @@
             <Button x:Name="SignIn" Background="Green" Content="Odeslat" Click="SignIn_Click"/>
             <TextBlock/>
             <Button x:Name="Registration" Content="Registration" Click="Registration_Click"/>
+            <Button x:Name="goShop" Content="shop" Click="goShop_Click"/>
         </StackPanel>
     </Grid>
 </Window>

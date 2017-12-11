@@ -15,6 +15,37 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="524*"/>
+            <RowDefinition Height="525*"/>
+        </Grid.RowDefinitions>
+        <ListView Margin="0,20,1000,0" Name="Items" SelectionChanged="Items_SelectionChanged" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="id"  DisplayMemberBinding="{Binding id_item}" />
+                    <GridViewColumn Header="name"  DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="price"  DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="description"  DisplayMemberBinding="{Binding description}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Width="920" HorizontalAlignment="Right" Margin="0,100,0,0" Grid.Row="0" Grid.RowSpan="2" >
+            <Label Content="Nákupní list" FontSize="25"/>
+            <ListView x:Name="ShopList" Height="800" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="id"  DisplayMemberBinding="{Binding id_item}" />
+                        <GridViewColumn Header="name"  DisplayMemberBinding="{Binding name}" />
+                        <GridViewColumn Header="price"  DisplayMemberBinding="{Binding price}" />
+                        <GridViewColumn Header="description"  DisplayMemberBinding="{Binding description}" />
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <Button Grid.Row="0" x:Name="Buy"  Content="Buy" Width="250" Margin="1143,27,519,465" Click="Buy_Click" />
+        <Button Grid.Row="0" x:Name="Clear"  Content="Clear" Background="Red" Width="250"  Click="Clear_Click" Margin="1439,27,223,465" />
+
     </Grid>
 </Window>
