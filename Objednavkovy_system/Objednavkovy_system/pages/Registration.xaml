@@ -21,7 +21,7 @@
 
 
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" >
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" >
             <StackPanel.Background>
                 <SolidColorBrush Color="PapayaWhip" Opacity="0.15"/>
             </StackPanel.Background>

@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Objednavkovy_system.pages;
+using Objednavkovy_system.classes;
 using RestSharp;
+using Newtonsoft.Json;
 
 namespace Objednavkovy_system
 {
@@ -66,24 +68,29 @@ namespace Objednavkovy_system
             var request = new RestRequest(Method.POST);
             request.AddParameter("action", 0);
             request.AddParameter("email", Email.Text);
-            request.AddParameter("password", Password.Password);
-            var res = client.Execute(request);
-            if (res.ResponseStatus == ResponseStatus.Error)
-            {
-                throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                //Error.Content= "Chyba na serveru, zkontroluj URL");
-            }
+            request.AddParameter("password", Password.Password); 
+            var res = client.Execute<List<Person>>(request);   
             if (res.Content == "0")
             {
-                Error.Content = "Špatné heslo nebo email";
+                Error.Content = "Neznámé heslo nebo email";
             }
             else
             {
-                ShopMain page = new ShopMain();
+                Person osoba = new Person();
+                osoba.email = Email.Text;
+                osoba.password = Password.Password;
+                ShopMain page = new ShopMain(osoba);
                 page.Show();
                 this.Close();
-            }
-            
+            }   
+        }
+        private void goBack_Click(object sender, RoutedEventArgs e)
+        {
+            Person osoba = new Person();
+            osoba.email = "Guest";
+            ShopMain page = new ShopMain(osoba);
+            page.Show();
+            this.Close();
         }
     }
 }

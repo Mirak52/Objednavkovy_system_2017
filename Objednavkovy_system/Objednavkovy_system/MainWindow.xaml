@@ -21,7 +21,7 @@
 
 
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" >
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" >
             <StackPanel.Background>
                 <SolidColorBrush Color="PapayaWhip" Opacity="0.15"/>
             </StackPanel.Background>
@@ -34,6 +34,8 @@
             <Button x:Name="SignIn" Background="Green" Content="Odeslat" Click="SignIn_Click"/>
             <TextBlock/>
             <Button x:Name="Registration" Content="Registration" Click="Registration_Click"/>
+            <TextBlock/>
+            <Button x:Name="goBack" Content="Guest browse"  Width="150" Click="goBack_Click"/>
         </StackPanel>
     </Grid>
 </Window>
