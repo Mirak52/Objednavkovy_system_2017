@@ -16,24 +16,28 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
 
-        <ListView Margin="0,170,920,0" Name="Animals">
+        <ListView Margin="0,170,1000,0" MaxWidth="920" Name="Animals" Background="White">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="325" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding price}" />
-                    <GridViewColumn Header="Description" Width="575" DisplayMemberBinding="{Binding description}" />
+                    <GridViewColumn Header="Description" Width="495" DisplayMemberBinding="{Binding description}" />
                 </GridView>
             </ListView.View>
         </ListView>
+
         <StackPanel Width="984" HorizontalAlignment="Left" Margin="10,0,0,0.4">
             <Label HorizontalAlignment="Center"  Width="300" Content="Enter name of product"/>
             <TextBox x:Name="nameSearch" HorizontalAlignment="Center"  Width="300" Height="35"  TextWrapping="Wrap" />
             <TextBlock/>
             <Button x:Name="Search" HorizontalAlignment="Center" Width="300" Content="Search" Height="35" Click="Search_Click" />
-            
+
             <Button x:Name="Default" HorizontalAlignment="Center" Width="300" Visibility="Hidden" Content="Default" Background="SlateGray" Margin="0,-35,0,0" Height="35"  Click="Default_Click" />
         </StackPanel>
-
-
+        <ListView Margin="1300,555,150,0">
+            <Label x:Name="totalPrice" Content="0" FontSize="30" VerticalContentAlignment="Center"/>
+            <Button x:Name="Buy" Content="Buy products" FontSize="30" Height="45" Width="450"/>
+            <Button x:Name="Clear" Content="Clear list" FontSize="30" Background="CornflowerBlue" Width="450" Height="45"/>
+        </ListView>
     </Grid>
 </Window>
