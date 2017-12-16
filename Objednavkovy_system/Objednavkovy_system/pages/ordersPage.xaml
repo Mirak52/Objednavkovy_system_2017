@@ -1,0 +1,38 @@
+﻿<Window x:Class="Objednavkovy_system.pages.OrdersPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Objednavkovy_system"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="OrdersPage" Height="1080" Width="1920"   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Label Content="For detail view just click on the order" FontSize="30" Margin="111,123,111.6,-27.6" />
+        <ListView Margin="0,170,1000,0" MaxWidth="920" Name="Orders" Background="White" SelectionChanged="Orders_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID order" DisplayMemberBinding="{Binding id_order}" />
+                    <GridViewColumn Header="Date of order"  DisplayMemberBinding="{Binding dateOfOrder}" />
+                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="State" Width="100" DisplayMemberBinding="{Binding state}" />
+                    <GridViewColumn Header="Date of takeover" DisplayMemberBinding="{Binding dateOfTakeover}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Margin="1147,181,188.6,587.4">
+            <Label Content="Return to shop" HorizontalAlignment="Center" FontSize="30"/>
+
+            <Button x:Name="Return" Content="Return" FontSize="30" Height="45" Width="450" Background="#FF2AA59A" Click="Return_Click"/>
+
+
+        </StackPanel>
+    </Grid>
+</Window>

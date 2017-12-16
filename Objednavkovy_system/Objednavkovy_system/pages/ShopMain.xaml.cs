@@ -26,16 +26,19 @@ namespace Objednavkovy_system.pages
         public List<itemOrder> ItemOrder = new List<itemOrder>();
         public List<shoppingList> ShoppingList = new List<shoppingList>();
         public int price = 0;
-        public string id_person;
         public string order;
+        public List<Item> listView = new List<Item>();
+        public Person user = new Person();
         public ShopMain(Person osoba)
         {
             InitializeComponent();
-            id_person = osoba.id_person;
-            if(osoba.email== "Guest")
+            user = osoba;
+            User.Content = osoba.email;
+            if(user.email== "Guest")
             {
                 //Buy.Visibility = Visibility.Hidden;
                 //Clear.Visibility = Visibility.Hidden;
+                //totalPrice.Content = "Nepříhlášený uživatel si nemůže objednat položky";
             }
             GetAnimals();
         }
@@ -45,13 +48,13 @@ namespace Objednavkovy_system.pages
             var request = new RestRequest(Method.GET);
             var res = client.Execute<List<Item>>(request);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            var queryResult = res.Data;
+            listView = res.Data;
             if (res.ResponseStatus == ResponseStatus.Error)
             {
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
                 //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
-            Animals.ItemsSource = queryResult;
+            Animals.ItemsSource = listView;
 
         }
         private void GetAnimalsByName(string name)
@@ -61,13 +64,14 @@ namespace Objednavkovy_system.pages
             request.AddParameter("name", name);
             var res = client.Execute<List<Item>>(request);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            var queryResult = res.Data;
+            listView = res.Data;
+            
             if (res.ResponseStatus == ResponseStatus.Error)
             {
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
                 //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
-            Animals.ItemsSource = queryResult;
+            Animals.ItemsSource = listView;
         }
 
         private void Default_Click(object sender, RoutedEventArgs e)
@@ -84,14 +88,20 @@ namespace Objednavkovy_system.pages
 
         private void Animals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            Buy.Visibility = Visibility.Visible;
+            Clear.Visibility = Visibility.Visible;
             
             dynamic selectedItem = Animals.SelectedItems[0];
+            listView.RemoveAt(Animals.SelectedIndex);
+            
             ShopList.ItemsSource = "";
             price = price + App.IsNumber(selectedItem.price);
             ShoppingList.Add(new shoppingList() {name = selectedItem.name, price = App.IsNumber(selectedItem.price)});
             ItemOrder.Add(new itemOrder() { id_item = selectedItem.id_item});
             totalPrice.Content = price;
             ShopList.ItemsSource = ShoppingList;
+
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -107,6 +117,8 @@ namespace Objednavkovy_system.pages
             ShoppingList.Clear();
             totalPrice.Content = price;
             ShopList.ItemsSource = ShoppingList;
+            Buy.Visibility = Visibility.Hidden;
+            Clear.Visibility = Visibility.Hidden;
         }
 
         private void Buy_Click(object sender, RoutedEventArgs e)
@@ -115,7 +127,7 @@ namespace Objednavkovy_system.pages
             var request = new RestRequest(Method.POST);
             request.AddParameter("action", 0);
             request.AddParameter("price", price);
-            request.AddParameter("id_person", id_person);
+            request.AddParameter("id_person", user.id_person);
             var res = client.Execute(request);
             if (res.ResponseStatus == ResponseStatus.Error)
             {
@@ -144,8 +156,16 @@ namespace Objednavkovy_system.pages
             {
                 totalPrice.Content = "Soudruzi z NDR udělali někde chybu!!";
             }
+            Buy.Visibility = Visibility.Hidden;
+            Clear.Visibility = Visibility.Hidden;
 
         }
-        
+
+        private void showOrders_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersPage page = new OrdersPage(user);
+            page.Show();
+            this.Close();
+        }
     }
 }

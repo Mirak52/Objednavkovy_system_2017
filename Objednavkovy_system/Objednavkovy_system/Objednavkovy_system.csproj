@@ -77,12 +77,21 @@
     </Compile>
     <Compile Include="classes\Item.cs" />
     <Compile Include="classes\itemOrder.cs" />
+    <Compile Include="classes\Order.cs" />
     <Compile Include="classes\shoppingList.cs" />
     <Compile Include="classes\Person.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pages\DetailOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +102,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\DetailOrder.xaml.cs">
+      <DependentUpon>DetailOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
