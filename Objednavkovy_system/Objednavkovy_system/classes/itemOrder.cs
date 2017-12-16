@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Objednavkovy_system.classes
 {
-    public class Person
+    public class itemOrder
     {
-        public string id_person { get; set; }
-        public string email { get; set; }
-        public string password{ get; set; }
+        public string id_item { get; set; }
+        public string id_order { get; set; }
     }
 }

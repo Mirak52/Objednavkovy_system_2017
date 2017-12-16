@@ -76,6 +76,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="classes\Item.cs" />
+    <Compile Include="classes\itemOrder.cs" />
+    <Compile Include="classes\shoppingList.cs" />
     <Compile Include="classes\Person.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

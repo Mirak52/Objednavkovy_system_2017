@@ -13,5 +13,12 @@ namespace Objednavkovy_system
     /// </summary>
     public partial class App : Application
     {
+        public static int IsNumber(string number)
+        {
+            int x = 0;
+            Int32.TryParse(number, out x);
+            return x;
+        }
     }
+   
 }

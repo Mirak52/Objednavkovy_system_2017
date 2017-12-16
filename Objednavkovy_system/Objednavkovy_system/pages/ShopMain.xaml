@@ -16,7 +16,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
 
-        <ListView Margin="0,170,1000,0" MaxWidth="920" Name="Animals" Background="White">
+        <ListView Margin="0,170,1000,0" MaxWidth="920" Name="Animals" Background="White" SelectionChanged="Animals_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="325" DisplayMemberBinding="{Binding name}" />
@@ -34,10 +34,22 @@
 
             <Button x:Name="Default" HorizontalAlignment="Center" Width="300" Visibility="Hidden" Content="Default" Background="SlateGray" Margin="0,-35,0,0" Height="35"  Click="Default_Click" />
         </StackPanel>
-        <ListView Margin="1300,555,150,0">
-            <Label x:Name="totalPrice" Content="0" FontSize="30" VerticalContentAlignment="Center"/>
-            <Button x:Name="Buy" Content="Buy products" FontSize="30" Height="45" Width="450"/>
-            <Button x:Name="Clear" Content="Clear list" FontSize="30" Background="CornflowerBlue" Width="450" Height="45"/>
+
+        <ListView Margin="1315,170,-0.4,417.4" MaxWidth="920" Name="ShopList" Background="{x:Null}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="325" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding price}" />
+                </GridView>
+            </ListView.View>
         </ListView>
+        <StackPanel Margin="1315,662,-0.4,0.4">
+            <Label x:Name="totalPrice" Content="0" FontSize="30" HorizontalAlignment="Center"/>
+            <TextBlock/>
+            <Button x:Name="Buy" Content="Buy products" FontSize="30" Height="45" Width="450" Click="Buy_Click"/>
+            <TextBlock/>
+            <Button x:Name="Clear" Content="Clear list" FontSize="30" Background="CornflowerBlue" Width="450" Height="45" Click="Clear_Click"/>
+        </StackPanel>
+        <Label Content="Nákupní seznam" FontSize="40" HorizontalAlignment="Left" Margin="1476,107,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

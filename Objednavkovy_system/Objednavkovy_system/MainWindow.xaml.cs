@@ -79,6 +79,7 @@ namespace Objednavkovy_system
                 Person osoba = new Person();
                 osoba.email = Email.Text;
                 osoba.password = Password.Password;
+                osoba.id_person = res.Content;
                 ShopMain page = new ShopMain(osoba);
                 page.Show();
                 this.Close();
@@ -88,6 +89,7 @@ namespace Objednavkovy_system
         {
             Person osoba = new Person();
             osoba.email = "Guest";
+            osoba.id_person = "0";
             ShopMain page = new ShopMain(osoba);
             page.Show();
             this.Close();
