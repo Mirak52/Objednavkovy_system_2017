@@ -16,13 +16,13 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Label Content="For detail view just click on the order" FontSize="30" Margin="111,123,111.6,-27.6" />
-        <ListView Margin="0,170,1000,0" MaxWidth="920" Name="Orders" Background="White" SelectionChanged="Orders_SelectionChanged">
+        <ListView Margin="0,170,1000,0" FontSize="20" MaxWidth="920" Name="Orders" Background="White" SelectionChanged="Orders_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID order" DisplayMemberBinding="{Binding id_order}" />
                     <GridViewColumn Header="Date of order"  DisplayMemberBinding="{Binding dateOfOrder}" />
-                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding price}" />
-                    <GridViewColumn Header="State" Width="100" DisplayMemberBinding="{Binding state}" />
+                    <GridViewColumn Header="Total price"  DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="State" DisplayMemberBinding="{Binding state}" />
                     <GridViewColumn Header="Date of takeover" DisplayMemberBinding="{Binding dateOfTakeover}" />
                 </GridView>
             </ListView.View>

@@ -54,7 +54,10 @@ namespace Objednavkovy_system.pages
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
                 //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
-            Animals.ItemsSource = listView;
+            foreach (var item in res.Data)
+            {
+                Animals.Items.Add(item);
+            }
 
         }
         private void GetAnimalsByName(string name)
@@ -71,7 +74,11 @@ namespace Objednavkovy_system.pages
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
                 //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
-            Animals.ItemsSource = listView;
+            foreach(var item in res.Data)
+            {
+                Animals.Items.Add(item);
+            }
+            
         }
 
         private void Default_Click(object sender, RoutedEventArgs e)
@@ -88,20 +95,22 @@ namespace Objednavkovy_system.pages
 
         private void Animals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+       
 
             Buy.Visibility = Visibility.Visible;
             Clear.Visibility = Visibility.Visible;
-            
             dynamic selectedItem = Animals.SelectedItems[0];
-            listView.RemoveAt(Animals.SelectedIndex);
-            
+
+
             ShopList.ItemsSource = "";
             price = price + App.IsNumber(selectedItem.price);
+
             ShoppingList.Add(new shoppingList() {name = selectedItem.name, price = App.IsNumber(selectedItem.price)});
             ItemOrder.Add(new itemOrder() { id_item = selectedItem.id_item});
             totalPrice.Content = price;
             ShopList.ItemsSource = ShoppingList;
-
+            //Animals.Items.Clear();
+        
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)

@@ -16,9 +16,10 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
 
-        <ListView Margin="0,170,1000,0" MaxWidth="920" Name="Animals" Background="White" SelectionChanged="Animals_SelectionChanged">
+        <ListView Margin="0,170,1000,0" FontSize="20" MaxWidth="920" Name="Animals" SelectionMode="Single" Background="White" SelectionChanged="Animals_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    
                     <GridViewColumn Header="Name" Width="325" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding price}" />
                     <GridViewColumn Header="Description" Width="495" DisplayMemberBinding="{Binding description}" />

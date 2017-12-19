@@ -45,7 +45,7 @@ namespace Objednavkovy_system.pages
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
                 //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
-            id_order.Content = detailOrder.id_order;
+            id_order.Content = "ID order:"+ detailOrder.id_order;
             Order.ItemsSource = queryResult;
         }
 
