@@ -176,5 +176,12 @@ namespace Objednavkovy_system.pages
             page.Show();
             this.Close();
         }
+
+        private void showAccount_Click(object sender, RoutedEventArgs e)
+        {
+            AccountPage page = new AccountPage(user);
+            page.Show();
+            this.Close();
+        }
     }
 }

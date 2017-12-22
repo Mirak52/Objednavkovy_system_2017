@@ -37,8 +37,10 @@
         </StackPanel>
         <StackPanel Margin="1315,0,-0.4,0.4">
             <Label x:Name="User" HorizontalAlignment="Center" Content="ahoj" FontSize="50" />
+            <Button x:Name="showAccount" Content="My account" FontSize="30" Height="45" Width="450" Background="#FF21BAF3" Click="showAccount_Click"/>
+            <TextBlock/>
             <Button x:Name="showOrders" Content="My orders" FontSize="30" Height="45" Width="450" Click="showOrders_Click"/>
-
+            
         </StackPanel>
         <ListView Margin="1315,439,-0.4,217.4" MaxWidth="920" Name="ShopList" Background="{x:Null}">
             <ListView.View>

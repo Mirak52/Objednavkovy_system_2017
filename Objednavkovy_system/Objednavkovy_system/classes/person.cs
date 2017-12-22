@@ -10,6 +10,8 @@ namespace Objednavkovy_system.classes
     {
         public string id_person { get; set; }
         public string email { get; set; }
-        public string password{ get; set; }
+        public string name { get; set; }
+        public string sirName { get; set; }
+        
     }
 }
