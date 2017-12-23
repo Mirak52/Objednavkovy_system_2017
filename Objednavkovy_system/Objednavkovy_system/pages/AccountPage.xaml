@@ -27,17 +27,22 @@
             <Label x:Name="numberOfOrders" Content="numberOfOrders" FontSize="35"/>
         </StackPanel>
         <StackPanel Margin="1200,150,250,0">
-            <Button x:Name="changeEmail" Content="Change e-mail" FontSize="30" Height="50" />
+            <Button x:Name="changeEmail" Content="Change e-mail" FontSize="30" Height="50" Click="changeEmail_Click" />
             <TextBlock/>
-            <Button x:Name="changeName" Content="Change name" FontSize="30" Height="50" Background="#FFF32121" />
+            <Button x:Name="changeName" Content="Change name" FontSize="30" Height="50" Background="#FFF32121" Click="changeName_Click" />
             <TextBlock />
-            <Button x:Name="changePassword" Content="Change name" FontSize="30" Height="50" Background="#FFF3A121" />
+            <Button x:Name="changePassword" Content="Change password" FontSize="30" Height="50" Background="#FFF3A121" Click="changePassword_Click" />
+            <TextBlock />
+            <Button x:Name="return" Content="Return" FontSize="30" Height="50" Background="#ffa3a121" Click="return_Click" />
             <TextBlock Height="150" />
-           
+            
             <Label x:Name="LColum_1" Visibility="Hidden" Content=""/>
             <TextBox x:Name="Colum_1"  Visibility="Hidden" />
             <Label x:Name="LColum_2" Content="" Visibility="Hidden" />
             <TextBox x:Name="Colum_2"  Visibility="Hidden" />
+            <TextBlock/>
+            <Button x:Name="Send" Content="SEND" Visibility="Hidden" FontSize="30" Height="50" Click="Send_Click"/>
+            <Label x:Name="Response" Content=""/>
         </StackPanel>
     </Grid>
 </Window>
