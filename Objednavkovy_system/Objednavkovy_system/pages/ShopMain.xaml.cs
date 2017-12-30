@@ -36,9 +36,11 @@ namespace Objednavkovy_system.pages
             User.Content = osoba.email;
             if(user.email== "Guest")
             {
-                //Buy.Visibility = Visibility.Hidden;
-                //Clear.Visibility = Visibility.Hidden;
-                //totalPrice.Content = "Nepříhlášený uživatel si nemůže objednat položky";
+                Buy.Visibility = Visibility.Hidden;
+                Clear.Visibility = Visibility.Hidden;
+                showAccount.Visibility = Visibility.Hidden;
+                showOrders.Visibility = Visibility.Hidden;
+                totalPrice.Content = "Nepříhlášený uživatel si nemůže objednat položky";
             }
             GetAnimals();
         }
@@ -95,13 +97,20 @@ namespace Objednavkovy_system.pages
 
         private void Animals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-       
 
-            Buy.Visibility = Visibility.Visible;
-            Clear.Visibility = Visibility.Visible;
+            if (user.email == "Guest")
+            {
+                Buy.Visibility = Visibility.Hidden;
+                Clear.Visibility = Visibility.Hidden;
+                showAccount.Visibility = Visibility.Hidden;
+                showOrders.Visibility = Visibility.Hidden;
+                totalPrice.Content = "Nepříhlášený uživatel si nemůže objednat položky";
+            }
+            else { 
+                Buy.Visibility = Visibility.Visible;
+                Clear.Visibility = Visibility.Visible;
+            }
             dynamic selectedItem = Animals.SelectedItems[0];
-
-
             ShopList.ItemsSource = "";
             price = price + App.IsNumber(selectedItem.price);
 
@@ -180,6 +189,13 @@ namespace Objednavkovy_system.pages
         private void showAccount_Click(object sender, RoutedEventArgs e)
         {
             AccountPage page = new AccountPage(user);
+            page.Show();
+            this.Close();
+        }
+
+        private void return_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow page = new MainWindow();
             page.Show();
             this.Close();
         }
