@@ -61,7 +61,7 @@ namespace Objednavkovy_system.pages
         {
             var client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/account.php");
             var request = new RestRequest(Method.POST);
-            request.AddParameter("action", 2);
+            request.AddParameter("action", 1);
             request.AddParameter("email", Email.Text);
             request.AddParameter("password", Password.Password);
             request.AddParameter("name", Name.Text);
