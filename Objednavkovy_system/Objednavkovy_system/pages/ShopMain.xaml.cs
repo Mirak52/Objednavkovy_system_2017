@@ -125,6 +125,7 @@ namespace Objednavkovy_system.pages
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             ClearLists();
+            totalPrice.Content = "Succesfull cleared";
         }
 
         private void ClearLists()

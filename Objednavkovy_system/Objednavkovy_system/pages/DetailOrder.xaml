@@ -38,8 +38,8 @@
 
 
         </StackPanel>
-        <Label x:Name="id_order" Content="Label" HorizontalAlignment="Left"  FontSize="30" Margin="328,113,0,0" VerticalAlignment="Top"/>
-
+        <Label x:Name="id_order" Content="Label" HorizontalAlignment="Left"  FontSize="30" Margin="328,73,0,0" VerticalAlignment="Top"/>
+        <Label Content="Your order" HorizontalAlignment="Left"  FontSize="30" Margin="328,143,0,0" VerticalAlignment="Top"/>
         <ListView Margin="932,412,0,0" Visibility="Hidden"   FontSize="20" MaxWidth="920" Name="Animals" SelectionChanged="Animals_SelectionChanged" >
             <ListView.View>
                 <GridView>

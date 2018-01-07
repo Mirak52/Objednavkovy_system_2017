@@ -68,10 +68,6 @@ namespace Objednavkovy_system.pages
             Animals.Visibility = Visibility.Visible;
             EditMode = true;
             GetAnimals();
-          
-
-
-
         }
         private void GetAnimals()
         {
