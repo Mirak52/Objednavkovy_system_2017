@@ -120,7 +120,6 @@ namespace Objednavkovy_system.pages
             totalPrice.Content = price;
             ShopList.ItemsSource = ShoppingList;
             //Animals.Items.Clear();
-        
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
