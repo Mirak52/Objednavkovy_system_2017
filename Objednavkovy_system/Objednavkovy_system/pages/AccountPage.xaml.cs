@@ -35,8 +35,7 @@ namespace Objednavkovy_system.pages
         {
             UserName.Content = Person.email;
             mail.Content = "Email: " + Person.email;
-            name.Content = "Name: " + Person.name;
-            sirName.Content = "Sir name: " + Person.sirName;
+           
             var client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/account.php");
             var request = new RestRequest(Method.GET);
             request.AddParameter("action", 0);
@@ -63,6 +62,8 @@ namespace Objednavkovy_system.pages
                 Person.name = data.name;
                 Person.sirName = data.sirName;
             }
+            name.Content = "Name: " + Person.name;
+            sirName.Content = "Sir name: " + Person.sirName;
         }
 
         private void changeEmail_Click(object sender, RoutedEventArgs e)

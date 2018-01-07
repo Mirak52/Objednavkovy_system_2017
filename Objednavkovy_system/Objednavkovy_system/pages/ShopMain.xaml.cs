@@ -40,7 +40,7 @@ namespace Objednavkovy_system.pages
                 Clear.Visibility = Visibility.Hidden;
                 showAccount.Visibility = Visibility.Hidden;
                 showOrders.Visibility = Visibility.Hidden;
-                totalPrice.Content = "Nepříhlášený uživatel si nemůže objednat položky";
+                totalPrice.Content = "Guest si nemůže objednat položky";
             }
             GetAnimals();
         }
@@ -70,7 +70,7 @@ namespace Objednavkovy_system.pages
             var res = client.Execute<List<Item>>(request);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             listView = res.Data;
-            
+            Animals.Items.Clear();
             if (res.ResponseStatus == ResponseStatus.Error)
             {
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
@@ -80,12 +80,13 @@ namespace Objednavkovy_system.pages
             {
                 Animals.Items.Add(item);
             }
-            
-        }
+            Search.Visibility = Visibility.Hidden;
+            }
 
         private void Default_Click(object sender, RoutedEventArgs e)
         {
             Default.Visibility = Visibility.Hidden;
+            Search.Visibility = Visibility.Visible;
             GetAnimals();
         }
 

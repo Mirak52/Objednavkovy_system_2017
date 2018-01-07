@@ -70,7 +70,7 @@ namespace Objednavkovy_system
             request.AddParameter("email", Email.Text);
             request.AddParameter("password", Password.Password); 
             var res = client.Execute<List<Person>>(request);   
-            if (res.Content == "0")
+            if (res.Content == "0" || res.Content=="")
             {
                 Error.Content = "Neznámé heslo nebo email";
             }
