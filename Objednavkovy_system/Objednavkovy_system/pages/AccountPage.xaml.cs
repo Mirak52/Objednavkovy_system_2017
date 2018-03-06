@@ -45,7 +45,6 @@ namespace Objednavkovy_system.pages
             if (res.ResponseStatus == ResponseStatus.Error)
             {
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
             numberOfOrders.Content = res.Content;
             client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/account.php");

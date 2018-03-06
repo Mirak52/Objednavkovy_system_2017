@@ -46,42 +46,57 @@ namespace Objednavkovy_system.pages
         }
         private void GetAnimals()
         {
-            var client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/item.php");
-            var request = new RestRequest(Method.GET);
-            var res = client.Execute<List<Item>>(request);
-            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            listView = res.Data;
-            if (res.ResponseStatus == ResponseStatus.Error)
+            var Items = App.DatabaseItem.QueryCustom().Result;
+            if(Items.Count != 0)
             {
-                throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                //Error.Content= "Chyba na serveru, zkontroluj URL");
+                if (App.CheckForInternetConnection())
+                {
+                    totalPrice.Content = "Bez internetu nemůžeš vytvářet objednávky";
+                }
+                foreach (var item in Items)
+                {
+                    Animals.Items.Add(item);
+                }
             }
-            foreach (var item in res.Data)
+            else if(App.CheckForInternetConnection()){
+                App.saveItemsToDatabase();
+                GetAnimals();
+            }
+            else
             {
-                Animals.Items.Add(item);
+                totalPrice.Content = "Nemáš přístup k internetu a v databázi nic nemáš!";
             }
-
         }
+
         private void GetAnimalsByName(string name)
         {
-            var client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/item.php");
-            var request = new RestRequest(Method.GET);
-            request.AddParameter("name", name);
-            var res = client.Execute<List<Item>>(request);
-            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            listView = res.Data;
             Animals.Items.Clear();
-            if (res.ResponseStatus == ResponseStatus.Error)
-            {
-                throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                //Error.Content= "Chyba na serveru, zkontroluj URL");
-            }
-            foreach(var item in res.Data)
+            var searchedData = App.DatabaseItem.SelectByName(name).Result;
+            foreach (var item in searchedData)
             {
                 Animals.Items.Add(item);
             }
             Search.Visibility = Visibility.Hidden;
-            }
+
+            /* var client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/item.php");
+             var request = new RestRequest(Method.GET);
+             request.AddParameter("name", name);
+             var res = client.Execute<List<Item>>(request);
+             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+             listView = res.Data;
+             Animals.Items.Clear();
+             if (res.ResponseStatus == ResponseStatus.Error)
+             {
+                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
+                 //Error.Content= "Chyba na serveru, zkontroluj URL");
+             }
+             foreach(var item in res.Data)
+             {
+                 Animals.Items.Add(item);
+             }
+             Search.Visibility = Visibility.Hidden;
+         */
+        }
 
         private void Default_Click(object sender, RoutedEventArgs e)
         {
@@ -96,6 +111,7 @@ namespace Objednavkovy_system.pages
             GetAnimalsByName(nameSearch.Text);
         }
 
+
         private void Animals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -107,15 +123,22 @@ namespace Objednavkovy_system.pages
                 showOrders.Visibility = Visibility.Hidden;
                 totalPrice.Content = "Nepříhlášený uživatel si nemůže objednat položky";
             }
-            else { 
-                Buy.Visibility = Visibility.Visible;
-                Clear.Visibility = Visibility.Visible;
+            else {
+                if (App.CheckForInternetConnection())
+                {
+                    Buy.Visibility = Visibility.Visible;
+                    Clear.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    totalPrice.Content = "Bez internetu nevytvoříš objednávku";
+                }
             }
             dynamic selectedItem = Animals.SelectedItems[0];
             ShopList.ItemsSource = "";
-            price = price + App.IsNumber(selectedItem.price);
+            price = price + selectedItem.price;
 
-            ShoppingList.Add(new shoppingList() {name = selectedItem.name, price = App.IsNumber(selectedItem.price)});
+            ShoppingList.Add(new shoppingList() {name = selectedItem.name, price = selectedItem.price});
             ItemOrder.Add(new itemOrder() { id_item = selectedItem.id_item});
             totalPrice.Content = price;
             ShopList.ItemsSource = ShoppingList;
@@ -151,13 +174,11 @@ namespace Objednavkovy_system.pages
             if (res.ResponseStatus == ResponseStatus.Error)
             {
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
            
             foreach (var Data in ItemOrder)
             {
                 order = order + "('" + Data.id_item + "','" + res.Content + "'),";
-
             }
             order = order.Remove(order.Length - 1);
             client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/order.php");
@@ -197,6 +218,13 @@ namespace Objednavkovy_system.pages
         private void return_Click(object sender, RoutedEventArgs e)
         {
             MainWindow page = new MainWindow();
+            page.Show();
+            this.Close();
+        }
+
+        private void Database_Click(object sender, RoutedEventArgs e)
+        {
+            DatabasePage page = new DatabasePage(user);
             page.Show();
             this.Close();
         }

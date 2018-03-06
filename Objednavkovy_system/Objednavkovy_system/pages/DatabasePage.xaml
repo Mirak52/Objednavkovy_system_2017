@@ -1,0 +1,20 @@
+﻿<Window x:Class="Objednavkovy_system.pages.DatabasePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Objednavkovy_system.pages"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="DatabasePage" Height="1080" Width="1920">
+    <Grid>
+        <StackPanel>
+            <Label x:Name="Data" Content="Last update: " FontSize="25"/>
+            <Label x:Name="Data1" Content="Celkový součet z lokální databáze: " FontSize="25"/>
+            <Label x:Name="Data2" Content="Celkový součet ze vzdálené databáze: " FontSize="25"/>
+            <Button x:Name="Update" Content="Updatovat" Click="Update_Click"/>
+            <TextBlock/>
+            <Button x:Name="Back" Content="Back" Click="Back_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
