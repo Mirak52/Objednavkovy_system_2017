@@ -63,7 +63,6 @@ namespace Objednavkovy_system
             if (res.ResponseStatus == ResponseStatus.Error)
             {
                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                //Error.Content= "Chyba na serveru, zkontroluj URL");
             }
        
             Task task = new Task(() => {

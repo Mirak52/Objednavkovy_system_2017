@@ -51,7 +51,8 @@ namespace Objednavkovy_system.pages
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-
+            App.deleteAllItems();
+            App.saveItemsToDatabase();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
