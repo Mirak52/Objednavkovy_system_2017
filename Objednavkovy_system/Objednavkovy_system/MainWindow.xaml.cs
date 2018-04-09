@@ -27,6 +27,21 @@ namespace Objednavkovy_system
         public MainWindow()
         {
             InitializeComponent();
+            CheckInternet();
+        }
+
+        private void CheckInternet()
+        {
+            if (App.CheckForInternetConnection())
+            {
+                StackPanel.Visibility = Visibility.Visible;
+                InternetL.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                StackPanel.Visibility = Visibility.Hidden;
+                InternetL.Visibility = Visibility.Visible;
+            }
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)

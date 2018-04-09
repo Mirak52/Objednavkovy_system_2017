@@ -59,7 +59,10 @@ namespace Objednavkovy_system.classes
         {
                 return database.InsertAsync(item);
         }
-
+        public Task<int> SaveList(List<Item> items)
+        {
+            return database.InsertAllAsync(items);
+        }
         public Task<int> DeleteItemAsync(Item item)
         {
             return database.DeleteAsync(item);

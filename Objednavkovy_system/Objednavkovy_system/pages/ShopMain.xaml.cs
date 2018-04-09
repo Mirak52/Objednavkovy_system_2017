@@ -49,7 +49,7 @@ namespace Objednavkovy_system.pages
             var Items = App.DatabaseItem.QueryCustom().Result;
             if(Items.Count != 0)
             {
-                if (App.CheckForInternetConnection())
+                if (!App.CheckForInternetConnection())
                 {
                     totalPrice.Content = "Bez internetu nemůžeš vytvářet objednávky";
                 }
@@ -77,25 +77,6 @@ namespace Objednavkovy_system.pages
                 Animals.Items.Add(item);
             }
             Search.Visibility = Visibility.Hidden;
-
-            /* var client = new RestClient("https://student.sps-prosek.cz/~bastlma14/obj/item.php");
-             var request = new RestRequest(Method.GET);
-             request.AddParameter("name", name);
-             var res = client.Execute<List<Item>>(request);
-             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-             listView = res.Data;
-             Animals.Items.Clear();
-             if (res.ResponseStatus == ResponseStatus.Error)
-             {
-                 throw new System.ArgumentException("Chyba na serveru, zkontroluj URL");
-                 //Error.Content= "Chyba na serveru, zkontroluj URL");
-             }
-             foreach(var item in res.Data)
-             {
-                 Animals.Items.Add(item);
-             }
-             Search.Visibility = Visibility.Hidden;
-         */
         }
 
         private void Default_Click(object sender, RoutedEventArgs e)

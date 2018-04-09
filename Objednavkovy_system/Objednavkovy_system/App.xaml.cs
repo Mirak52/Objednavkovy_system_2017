@@ -74,6 +74,9 @@ namespace Objednavkovy_system
 
         private static void saveData(List<Item> data)
         {
+            deleteAllItems();
+            App.DatabaseItem.SaveList(data);
+            /*
             foreach (var item in data)
             {
                 Item itemToDatabase = new Item();
@@ -82,7 +85,7 @@ namespace Objednavkovy_system
                 itemToDatabase.price = item.price;
                 itemToDatabase.description = item.description;
                 App.DatabaseItem.SaveItemAsync(itemToDatabase);
-            }
+            }*/
         }
 
         public static void deleteAllItems()

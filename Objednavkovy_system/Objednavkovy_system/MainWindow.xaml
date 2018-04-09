@@ -21,7 +21,7 @@
 
 
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" >
+        <StackPanel x:Name="StackPanel" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" >
             <StackPanel.Background>
                 <SolidColorBrush Color="PapayaWhip" Opacity="0.15"/>
             </StackPanel.Background>
@@ -35,7 +35,9 @@
             <TextBlock/>
             <Button x:Name="Registration" Content="Registration" Click="Registration_Click"/>
             <TextBlock/>
-            <Button x:Name="goBack" Content="Guest browse"  Width="150" Click="goBack_Click"/>
+         
         </StackPanel>
+        <Label x:Name="InternetL" VerticalAlignment="Center" Visibility="Hidden" HorizontalAlignment="Center" FontSize="50px" Content="Bez internetu nelze přihlásit!"/>
+        <Button x:Name="goBack" Content="Guest browse" VerticalAlignment="Center" Margin="0,400,0,0" Width="150" Click="goBack_Click"/>
     </Grid>
 </Window>
